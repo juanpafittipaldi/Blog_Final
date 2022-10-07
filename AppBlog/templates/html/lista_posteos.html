@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>FUNCA</h1>
+    {% for posteo in posteos %}
+    <article>
+        <time>publicado: {{ posteo.fecha_publicado }}</time>
+        <h2><a href="">{{ posteo.titulo }}</a></h2>
+        <p>{{ posteo.contenido | linebreaksbr }}</p>
+    </article>
+{% endfor %}
 </body>
 </html>
