@@ -1,3 +1,3 @@
 from django.shortcuts import render
-
-# Create your views here.
+def lista_posteos(request):
+    return render(request, 'html/lista_posteos.html', {})
