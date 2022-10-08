@@ -1,0 +1,16 @@
+{% extends 'html/base.html' %}
+{% block content %}
+
+{% for posteo in posteos %}
+    <div class="post">
+        <p class="date">Borrador creado el: {{ posteo.fecha_creado|date:'d-m-Y' }}</p>
+        <h1><a href="{% url 'detalle_posteo' pk=posteo.pk %}">{{ posteo.titulo }}</a></h1>
+        <p>{{ posteo.contenido}}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+
+
+       
