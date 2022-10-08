@@ -2,9 +2,9 @@
 
 {% block content %}
     <h2>Nuevo Posteo</h2>
-    <form method="POST" class="post-form">
+    <form method="POST" class="d-flex flex-column justify-content-center">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-secondary">Postear</button>
+        {{ form }}
+        <button type="submit" class="btn btn-success mt-3 d-grid gap-2 col-6 mx-auto">Postear</button>
     </form>
 {% endblock %}

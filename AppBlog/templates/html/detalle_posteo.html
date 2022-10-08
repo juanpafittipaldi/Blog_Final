@@ -10,5 +10,7 @@
         <h2>{{ posteo.titulo }}</h2>
         <h6>Publicado por <i>{{ posteo.autor }}</i></h6> 
         <p>{{ posteo.contenido | linebreaksbr }}</p>
-    </article>
-{% endblock %}
+        {% if user.is_authenticated %}
+        <a class="btn btn-info" href="{% url 'editar_posteo' pk=posteo.pk %}">EDITAR POSTEO</a>
+        {% endif %}
+        {% endblock %}
