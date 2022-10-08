@@ -10,8 +10,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-    <div class="mt-5">
+    <div class="mt-5 container">
         <h1 class="header">HOME PAGE BLOG</h1>
+        <div class="d-flex justify-content-end mt-4 mb-4">
+            <a href="{% url 'posteo_nuevo' %}" class="btn btn-success">CREAR POSTEO</a>
+        </div>
     </div>
     <main class="container">
         <div class="row">

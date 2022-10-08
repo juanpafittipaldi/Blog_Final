@@ -1,0 +1,14 @@
+{% extends 'html/base.html' %}
+
+{% block content %}
+    
+        {% if posteo.fecha_publicado %}
+            <time>
+                {{ posteo.fecha_publicado }}
+            </time>
+        {% endif %}
+        <h2>{{ posteo.titulo }}</h2>
+        <h6>Publicado por <i>{{ posteo.autor }}</i></h6> 
+        <p>{{ posteo.contenido | linebreaksbr }}</p>
+    </article>
+{% endblock %}
