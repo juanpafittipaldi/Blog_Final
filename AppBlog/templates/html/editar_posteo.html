@@ -1,7 +1,7 @@
 {% extends 'html/base.html' %}
 
 {% block content %}
-    <h2>Editar Posteo</h2>
+    <h2>Editar Posteo:</h2>
     <form method="POST" class="d-flex flex-column justify-content-center">
         {% csrf_token %}
         {{ form }}
