@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar perfil de {{ usuario }}</title>
+</head>
+<body>
+    <h1>PERFIL DE {{ usuario.username }}</h1>
+         Nombre: {{ usuario.first_name }}
+         <br>
+         Apellido: {{ usuario.last_name }}
+         <br>
+         Email: {{ usuario.email }}
+         <br>
+         Descripcion: {{ usuario.descripcion }}
+         <br>
+         Pagina web: {{ usuario.paginaweb }}
+         <br>
+         Imagen: <img src="{{ usuario.imagen.url }}" alt="">
+         <br>
+         <br>
+         <a href="{% url 'editarperfil' %}">Editar perfil</a>
+         <br>
+         <br>
+         <a href="{% url 'cambiopassword' %}">Cambia tu contraseña</a>
+</body>
+</html>

@@ -67,6 +67,12 @@
 <input type="submit" value="Enviar mensaje">
 </form>
 {{ mensaje }}
+<br>
+<br>
+<a href="{% url 'perfil' username %}">Ver perfil de {{ username }}</a>
+<br>
+<br>
+<a href="{% url 'listadousuarios' %}">Volver al listado de usuarios</a>
 <body>
     
 </body>

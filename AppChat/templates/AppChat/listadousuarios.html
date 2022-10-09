@@ -10,7 +10,8 @@
     <ul>
         {% for user in usuarios %}
         {% if user != usuariologueado %}
-            {{ user.username }} <a href="{% url 'crearmensaje' user.username %}">crear mensaje</a>
+            {{ user.username }} <a href="{% url 'crearmensaje' user.username %}">Chat</a>
+            <a href="{% url 'perfil' user.username %}">Ver perfil</a>
             <br>
         {% else %}
             {{ continue }}

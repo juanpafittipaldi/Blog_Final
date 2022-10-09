@@ -13,9 +13,6 @@ def listadousuarios(request):
     usuariologueado=request.user
     return render(request,"AppChat/listadousuarios.html",{"usuarios":users, "usuariologueado":usuariologueado})
 
-def Elegirdestinatario(request, usuario_destino):
-    destinatario = usuario_destino
-
 @login_required
 def crearmensaje(request, username):
     if request.method=="POST":

@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from AppModuloUsuario.forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -38,7 +39,7 @@ def register(request):
         form=UserRegisterForm()
         return render(request, "AppModuloUsuario/register.html",{"formulario":form})
 
-
+@login_required
 def editarperfil(request):
     usuario=request.user
     if request.method=="POST":
@@ -59,6 +60,7 @@ def editarperfil(request):
         form=UserEditForm(instance=usuario)
     return render(request, "AppModuloUsuario/editarperfil.html",{"formulario":form,"usuario":usuario})
 
+@login_required
 def cambiopassword(request):
     usuario=request.user
     if request.method=="POST":
@@ -71,5 +73,14 @@ def cambiopassword(request):
     else:
         form=CambioPasswordForm(user=request.user)
     return render(request, "AppModuloUsuario/cambiopassword.html",{"formulario":form,"usuario":usuario})
+
+@login_required
+def datosusuario(request):
+    usuario=request.user
+    return render(request,"AppModuloUsuario/datosusuario.html",{"usuario":usuario})
+
+def perfil(request, username):
+    usuario=User.objects.filter(username=username)
+    return render(request,"AppModuloUsuario/perfil.html",{"usuario":usuario})
 
 # Create your views here.
