@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2>Editar Posteo:</h2>
-    <form method="POST" class="d-flex flex-column justify-content-center">
+    <form method="POST" enctype="multipart/form-data" class="d-flex flex-column justify-content-center">
         {% csrf_token %}
         {{ form.media }}
         {{ form }}
