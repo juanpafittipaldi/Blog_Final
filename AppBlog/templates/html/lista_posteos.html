@@ -4,9 +4,12 @@
 {% for posteo in posteos %}
     
     <article class="container">
+        <img class="mb-2 img-fluid" src="{{posteo.imagen_posteo.url}}" alt="si estas viendo esto algo se rompió">
         <h2><a href="{% url 'detalle_posteo' pk=posteo.pk %}">{{ posteo.titulo }}</a></h2>
-        <p>{{ posteo.contenido|safe|linebreaksbr }}</p>
         <time>publicado: {{ posteo.fecha_publicado }}</time>
+        <p>{{ posteo.contenido|safe|linebreaksbr|truncatewords:30 }}</p>
+        <br>
+        <a class="btn btn-info" href="{% url 'detalle_posteo' pk=posteo.pk %}">SEGUIR LEYENDO</a>
         <hr>
     </article>
 {% endfor %}

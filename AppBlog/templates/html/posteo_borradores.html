@@ -5,7 +5,7 @@
     <div class="post">
         <p class="date">Borrador creado el: {{ posteo.fecha_creado|date:'d-m-Y' }}</p>
         <h1><a href="{% url 'detalle_posteo' pk=posteo.pk %}">{{ posteo.titulo }}</a></h1>
-        <p>{{ posteo.contenido}}</p>
+        <p>{{ posteo.contenido|safe|linebreaksbr|truncatewords:30 }}</p>
     </div>
 {% endfor %}
 

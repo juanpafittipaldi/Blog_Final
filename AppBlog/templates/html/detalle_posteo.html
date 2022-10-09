@@ -2,22 +2,27 @@
 
 {% block content %}
 
-    
+       
         {% if posteo.fecha_publicado %}
-            <time>
-                {{ posteo.fecha_publicado }}
+            <time class="mb-2 mt-2">
+               Publicado el: {{ posteo.fecha_publicado }}
             </time>    
         {% endif %}
-        <br><br>
-        <img src="{{posteo.imagen_posteo.url}}" alt="si estas viendo esto algo se rompió"> 
-        <br><br>
+        {% if posteo.imagen_posteo %}
+                {{posteo.imagen_posteo.url}}
+                        <div class="mb-5">
+                            <img class="img-fluid" src="{{posteo.imagen_posteo.url}}" alt="si estas viendo esto algo se rompió">   
+                        </div>
+        {% endif %}
         <h2>{{ posteo.titulo }}</h2>
-        <h6>Publicado por <i>{{ posteo.autor }}</i></h6> 
-        <p>{{ posteo.contenido|safe|linebreaksbr }}</p>
+        <h6 class="mb-2 mt-2">Publicado por <i>{{ posteo.autor }}</i></h6> 
+        <p class="mb-2 mt-2">{{ posteo.contenido|safe}}</p>
         {% if user.is_authenticated %}
         <a class="btn btn-info" href="{% url 'editar_posteo' pk=posteo.pk %}">EDITAR POSTEO</a>
         <a class="btn btn-danger" href="{% url 'eliminar_posteo' pk=posteo.pk %}">BORRAR POSTEO</a>
         <a class="btn btn-primary" href="{% url 'publicar_posteo' pk=posteo.pk %}">PUBLICAR</a>
+        {% else %} 
+        <a href="{% url 'lista_posteos' %}" class="btn btn-outline-success">VOLVER AL HOME</a>
         {% endif %}
         {% endblock %}
 
