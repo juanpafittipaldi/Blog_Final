@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from BlogNuevo.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("AppModuloUsuario/", include("AppModuloUsuario.urls")),
-    path("",inicio,name="inicio")
+    path("",inicio,name="inicio"),
+    path("AppChat/", include("AppChat.urls")),
 ]
+
+urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
