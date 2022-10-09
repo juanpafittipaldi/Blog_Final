@@ -1,14 +1,13 @@
 
 from django.db import models
-
 from django.conf import settings
 from django.utils import timezone
-
+from ckeditor.fields import RichTextField
 
 class Posteo(models.Model):
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     titulo = models.CharField(max_length=500)
-    contenido = models.TextField()
+    contenido = RichTextField(blank=True, null=True)
     fecha_creado = models.DateTimeField(default=timezone.now)
     fecha_publicado = models.DateTimeField(blank=True, null=True)
 

@@ -5,7 +5,7 @@
     
     <article class="container">
         <h2><a href="{% url 'detalle_posteo' pk=posteo.pk %}">{{ posteo.titulo }}</a></h2>
-        <p>{{ posteo.contenido | linebreaksbr }}</p>
+        <p>{{ posteo.contenido|safe|linebreaksbr }}</p>
         <time>publicado: {{ posteo.fecha_publicado }}</time>
         <hr>
     </article>
