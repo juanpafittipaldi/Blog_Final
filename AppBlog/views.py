@@ -52,8 +52,11 @@ def posteo_borradores(request):
 #Create
 def publicar_posteo(request, pk):
     posteo = get_object_or_404(Posteo, pk=pk)
-    posteo.publicar()
-    return redirect('lista_posteos')
+    if posteo.imagen_posteo: 
+        posteo.publicar()
+        return redirect('lista_posteos')
+    else: 
+        return editar_posteo(request, pk)
 @login_required
 #Delete
 def eliminar_posteo(request, pk):
