@@ -6,35 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<h2 style="text-align:center">CHAT:</h2>
+<h2>Mensajes recibidos:</h2>
 <br>
-{% if mensajes %}
-    {% for mensajes in mensajes %}
+{% if mensajes_recibidos %}
+    {% for mensajes in mensajes_recibidos %}
         {% if mensajes.remitente == username %}
-            {{ mensajes.fecha }} 
-            <b>{{ mensajes.titulo }}</b>
+            {{ mensajes.fecha }}
             <br>
-            <font color="red">{{ mensajes.texto }}</font>
+            Titulo
             <br>
-            -------------------------------------
+            {{ mensajes.titulo }}
             <br>
-        {% elif mensajes.destinatario == username %}
-        <div style='text-align:right'>
-            {{ mensajes.fecha }} <b>{{ mensajes.titulo }}</b>
+            Texto
             <br>
-            <font color="blue">{{ mensajes.texto }}</font>
+            {{ mensajes.texto }}
             <br>
             -------------------------------------
             <br>
-            </div>
-
+        {% else %}
+            {{ pass }}
         {% endif %}
         {% endfor %}
 {% else %}
-    <div style="text-align:center">
-    Aun no hay mensajes
-    </div>
+    <h3>No hay mensajes recibidos</h3>
 {% endif %}
+<br>
+<h2>Mensajes enviados:</h2>
+<br>
+{% if mensajes_enviados %}
+    {% for mensajes in mensajes_enviados %}
+        {% if mensajes.destinatario == username %}
+            {{ mensajes.fecha }}
+            <br>
+            Titulo
+            <br>
+            {{ mensajes.titulo }}
+            <br>
+            Texto
+            <br>
+            {{ mensajes.texto }}
+            <br>
+            -------------------------------------
+            <br>
+        {% else %}
+            {{ pass }}
+            {% endif %}
+            {% endfor %}
+{% else %}
+    <h3>No hay mensajes</h3>
+{% endif %}
+
+
+
 
 <h2>Nuevo mensaje para {{ username }}</h2>
 <form action="{% url 'crearmensaje' username %}" method="POST"> {% csrf_token %}
@@ -51,6 +74,6 @@
 <br>
 <a href="{% url 'listadousuarios' %}">Volver al listado de usuarios</a>
 <body>
-</div>  
+    
 </body>
 </html>

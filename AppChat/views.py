@@ -4,6 +4,7 @@ from AppChat.forms import *
 from django.contrib.auth.decorators import login_required
 from AppChat.models import Mensajes
 from AppModuloUsuario.models import User
+from django.db.models import Q
 
 # Create your views here.
 @login_required
@@ -12,6 +13,29 @@ def listadousuarios(request):
     users = User.objects.all()
     usuariologueado=request.user
     return render(request,"AppChat/listadousuarios.html",{"usuarios":users, "usuariologueado":usuariologueado})
+
+
+# def crearmensaje(request, username):
+#     if request.method=="POST":
+#         form=MensajeForm(request.POST)
+#         if form.is_valid():
+#             info=form.cleaned_data
+#             destinatario=username
+#             remitente=request.user.username
+#             titulo=info["titulo"]
+#             texto=info["mensaje"]
+#             Mensaje=Mensajes(remitente=remitente,destinatario=destinatario,titulo=titulo,texto=texto)
+#             Mensaje.save()
+#             return render(request,"AppChat/listadousuarios.html",{"mensaje":"creaste un mensaje"})
+#         else:
+#             formulario=MensajeForm()
+#             return render(request,"AppChat/crearmensaje.html",{"formulario":formulario,"mensaje":"vuelva a intentarlo"})
+#     else:
+#         mensajes_enviados=Mensajes.objects.filter(remitente=request.user.username)
+#         mensajes_recibidos=Mensajes.objects.filter(destinatario=request.user.username)
+#         user=username
+#         formulario=MensajeForm()
+#         return render(request, "AppChat/crearmensaje.html",{"formulario":formulario,"username":user,"mensajes_enviados":mensajes_enviados,"mensajes_recibidos":mensajes_recibidos})
 
 @login_required
 def crearmensaje(request, username):
@@ -25,13 +49,15 @@ def crearmensaje(request, username):
             texto=info["mensaje"]
             Mensaje=Mensajes(remitente=remitente,destinatario=destinatario,titulo=titulo,texto=texto)
             Mensaje.save()
-            return render(request,"AppChat/listadousuarios.html",{"mensaje":"creaste un mensaje"})
+            mensajes=Mensajes.objects.filter(Q(remitente=request.user.username) | Q(destinatario=request.user.username))
+            user=username
+            formulario=MensajeForm()
+            return render(request,"AppChat/crearmensaje.html",{"formulario":formulario,"username":user,"mensajes":mensajes})
         else:
             formulario=MensajeForm()
             return render(request,"AppChat/crearmensaje.html",{"formulario":formulario,"mensaje":"vuelva a intentarlo"})
     else:
-        mensajes_enviados=Mensajes.objects.filter(remitente=request.user.username)
-        mensajes_recibidos=Mensajes.objects.filter(destinatario=request.user.username)
+        mensajes=Mensajes.objects.filter(Q(remitente=request.user.username) | Q(destinatario=request.user.username))
         user=username
         formulario=MensajeForm()
-        return render(request, "AppChat/crearmensaje.html",{"formulario":formulario,"username":user,"mensajes_enviados":mensajes_enviados,"mensajes_recibidos":mensajes_recibidos})
+        return render(request, "AppChat/crearmensaje.html",{"formulario":formulario,"username":user,"mensajes":mensajes})
