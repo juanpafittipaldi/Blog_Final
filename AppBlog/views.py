@@ -35,12 +35,12 @@ def editar_posteo(request, pk):
     if request.method == "POST":
         form = PosteoForm(request.POST, request.FILES,instance=posteo)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.autor = request.user
-            post.save()
+            posteo = form.save(commit=False)
+            posteo.autor = request.user
+            posteo.save()
             return redirect('detalle_posteo', pk=posteo.pk)
     else:
-        form = PosteoForm(instance=posteo)
+        form = PosteoForm(instance=posteo)  
     return render(request, 'html/editar_posteo.html', {'form': form})
 
 @login_required
