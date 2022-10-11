@@ -3,6 +3,8 @@ from django.utils import timezone
 from .forms import PosteoForm
 from .models import Posteo
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 #Read
 def lista_posteos(request):
     posteos = Posteo.objects.filter(fecha_publicado__lte=timezone.now()).order_by('-fecha_creado')
@@ -41,7 +43,7 @@ def editar_posteo(request, pk):
             return redirect('detalle_posteo', pk=posteo.pk)
     else:
         form = PosteoForm(instance=posteo)  
-    return render(request, 'html/editar_posteo.html', {'form': form})
+    return render(request, 'html/editar_posteo.html', {'form': form, 'posteo':posteo})
 
 @login_required
 #Read

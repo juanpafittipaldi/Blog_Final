@@ -1,15 +1,20 @@
 {% extends 'html/base.html' %}
 {% block content %}
-
-    <h2>Editar Posteo:</h2>
-        <form method="POST" enctype="multipart/form-data" class="d-flex flex-column justify-content-center">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form }}
-            <div class="alert alert-danger mt-3" role="alert">
-                <h3>Importante</h3>
-                <p>Los posteos para ser publicados necesitan una imagen de cabecera. <br>Hasta que no se asigne la imagen el posteo queda como borrador. Puede asignarla ahora o guardar los cambios y editar el posteo en el <a href="{% url 'posteo_borradores' %}">listado de borradores</a><p>
-            </div>
-            <button type="submit" class="btn btn-success mt-3 d-grid gap-2 col-6 mx-auto">GUARDAR CAMBIOS</button>
-        </form> 
+{% if user.is_authenticated %}
+    {% if request.user.id == posteo.autor.id %}
+            <h2>Editar Posteo:</h2>
+            <form method="POST" enctype="multipart/form-data" class="d-flex flex-column justify-content-center">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form }}
+                <div class="alert alert-danger mt-3" role="alert">
+                    <h3>Importante</h3>
+                    <p>Los posteos para ser publicados necesitan una imagen de cabecera. <br>Hasta que no se asigne la imagen el posteo queda como borrador. Puede asignarla ahora o guardar los cambios y editar el posteo en el <a href="{% url 'posteo_borradores' %}">listado de borradores</a><p>
+                </div>
+                <button type="submit" class="btn btn-success mt-3 d-grid gap-2 col-6 mx-auto">GUARDAR CAMBIOS</button>
+            </form>
+    {% else %}
+    <h2 class="mt-5">Este posteo es de otro usuario no puede editarlo</h2>
+{% endif %}
+{% endif %}
 {% endblock %}
