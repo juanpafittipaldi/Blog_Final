@@ -3,7 +3,7 @@
 
 {% if posteos %}
     {% for posteo in posteos %}
-        <article class="container">
+        <article class="container mt-5">
             <img class="mb-2 img-fluid" src="{{posteo.imagen_posteo.url}}" alt="si estas viendo esto algo se rompió">
             <h2><a href="{% url 'detalle_posteo' pk=posteo.pk %}">{{ posteo.titulo }}</a></h2>
             <time>publicado: {{ posteo.fecha_publicado }}</time>

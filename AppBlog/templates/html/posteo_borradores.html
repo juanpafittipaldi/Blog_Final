@@ -3,7 +3,7 @@
 
 {% if posteos %}
     {% for posteo in posteos %}
-    <div>
+    <div class="mt-5">
         <p class="date">Borrador creado el: {{ posteo.fecha_creado|date:'d-m-Y' }}</p>
         {%if posteo.imagen_posteo %}
             <img class="mb-2 img-fluid" src="{{posteo.imagen_posteo.url}}" alt="si estas viendo esto algo se rompió">

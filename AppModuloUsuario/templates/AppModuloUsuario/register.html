@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends '../html/base.html' %}
+{% load static %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,13 +8,14 @@
     <title>REGISTRO</title>
 </head>
 <body>
-    <h1>REGISTRATE</h1>
+    <h1 class="mt-5">REGISTRATE</h1>
     <form action="{% url 'register' %}" method="POST">{% csrf_token %}
         <table>
             {{ formulario.as_table }}    
         </table>
-        <input type="submit" value="Registrate">
+        <input class="btn btn-success" type="submit" value="Registrate">
     </form>
     <h2>{{ mensaje }}</h2>
 </body>
+{% endblock %}
 </html>

@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends '../html/base.html' %}
+{% load static %}
+{% block content %}
     {% if usuarios %}
-    <ul>
-        {% for user in usuarios %}
-        {% if user != usuariologueado %}
-            {{ user.username }} <a href="{% url 'crearmensaje' user.username %}">Chat</a>
-            <a href="{% url 'perfil' user.username %}">Ver perfil</a>
-            <br>
-        {% else %}
-            {{ continue }}
-        {% endif %}
-        {% endfor %}
-    </ul>
+    <div class="d-flex flex-column align-items-center">
+        <div class="alert alert-success mt-5" role="success">
+            <h3>Bienvenido {{ usuariologueado }} al Chat de Usuarios</h3>
+            <p>Seleccione la opción CHAT para enviar mensaje al usuario listado o Ver Perfil para ver la información de ese usuario.<p>
+        </div>
+        <ul class="mt-5">
+            {% for user in usuarios %}
+            {% if user != usuariologueado %}
+                <b>Usuario:</b> {{ user.username }} | 
+                <a class="btn btn-success" href="{% url 'crearmensaje' user.username %}">Chat</a> -
+                <a class="btn btn-outline-success" href="{% url 'perfil' user.username %}">Ver perfil</a>
+                <br>
+                <hr>
+            {% else %}
+                {{ continue }}
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
     {% endif  %}
     {{ mensaje }}
-<body>
+
+  {% endblock %}  
     
 </body>
 </html>
