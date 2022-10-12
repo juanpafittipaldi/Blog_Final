@@ -2,6 +2,10 @@
 {% load static %}
 {% block content %}
     <h1 class="mt-5">LOGIN</h1>
+    {% if user.is_authenticated %}
+        <h2>{{ user }} ya estas logueado!</h2>
+        <a class="btn btn-success ms-4" href="{% url 'lista_posteos' %}">Ir a Posteos</a>
+    {% else %}
     <form action="{% url 'login' %}" method="POST">{% csrf_token %}
         <table>
             {{ formulario.as_table }}    
@@ -9,6 +13,7 @@
     
         <input class="btn btn-success mt-3" type="submit" value="Ingresar">
     </form>
+    {% endif %}
     <h2>{{ mensaje }}</h2>
 
 {% endblock %}

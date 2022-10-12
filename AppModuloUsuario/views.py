@@ -22,8 +22,8 @@ def login_request(request):
         else:
             return render(request, "AppModuloUsuario/login.html",{"formulario":form, "mensaje":"usuario o contaseña incorrectos"})
     else:
-        form=AuthenticationForm()
-        return render(request, "AppModuloUsuario/login.html",{"formulario":form})
+            form=AuthenticationForm()
+            return render(request, "AppModuloUsuario/login.html",{"formulario":form})
 
 def register(request):
     if request.method == "POST":
@@ -33,8 +33,13 @@ def register(request):
             formlogin=AuthenticationForm()
             return render(request,"AppModuloUsuario/login.html",{"formulario":formlogin,"mensaje":"Usuario creado correctamente"})
         else:
+            mensaje_1="Error al registrarse, vuelva a intentarlo"
+            mensaje_2="Tu contraseña no puede ser muy similar al resto de tu informacion personal"
+            mensaje_3="Debe tener mas de 8 caracteres, no puede ser una contraseña comun, ni ser enteramente numerica"
+            mensaje_4="Ambas contraseñas deben coincidir"
+
             form=UserRegisterForm()
-            return render(request,"AppModuloUsuario/register.html",{"formulario":form,"mensaje":"Error al registrarse, vuelva a intentarlo"})
+            return render(request,"AppModuloUsuario/register.html",{"formulario":form,"mensaje_1":mensaje_1,"mensaje_2":mensaje_2,"mensaje_3":mensaje_3,"mensaje_4":mensaje_4})
     else:
         form=UserRegisterForm()
         return render(request, "AppModuloUsuario/register.html",{"formulario":form})

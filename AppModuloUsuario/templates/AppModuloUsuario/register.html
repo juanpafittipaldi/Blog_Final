@@ -9,13 +9,22 @@
 </head>
 <body>
     <h1 class="mt-5">REGISTRATE</h1>
+    {% if user.is_authenticated %}
+        <h3>{{ user }} estas logueado! Si queres crear un nuevo usuario primero tenes que desloguearte</h3>
+        <a class="btn btn-success ms-4" href="{% url 'Logout' %}">Logout</a>
+        <a class="btn btn-success ms-4" href="{% url 'lista_posteos' %}">Ir a Posteos</a>
+    {% else %}
     <form action="{% url 'register' %}" method="POST">{% csrf_token %}
         <table>
             {{ formulario.as_table }}    
         </table>
         <input class="btn btn-success" type="submit" value="Registrate">
     </form>
-    <h2>{{ mensaje }}</h2>
+    <h2>{{ mensaje_1 }}</h2>
+    <h6 style="color: red">{{ mensaje_2 }}</h6>
+    <h6 style="color: red">{{ mensaje_3 }}</h6>
+    <h6 style="color: red">{{ mensaje_4 }}</h6>
+    {% endif %}
 </body>
 {% endblock %}
 </html>

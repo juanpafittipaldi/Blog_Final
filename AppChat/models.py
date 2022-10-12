@@ -9,3 +9,6 @@ class Mensajes(models.Model):
     destinatario=models.CharField(max_length=60)
     titulo=models.CharField(max_length=40)
     texto=models.CharField(max_length=2000)
+    
+    def __str__(self):
+        return "Mensaje de " + self.remitente + " a " + self.destinatario + " del " + str(self.fecha)

@@ -63,4 +63,7 @@ def eliminar_posteo(request, pk):
     posteo = get_object_or_404(Posteo, pk=pk)
     posteo.delete()
     return redirect('lista_posteos')
-    
+
+#About
+def about(request):
+    return render(request,"html/about.html")

@@ -10,6 +10,7 @@ urlpatterns = [
     path('borradores/', views.posteo_borradores, name='posteo_borradores'),
     path('posteo/<pk>/publicar/', views.publicar_posteo, name='publicar_posteo'),
     path('posteo/<pk>/eliminar/', views.eliminar_posteo, name='eliminar_posteo'),
+    path('about/',views.about,name="about")
 ]
 
 
