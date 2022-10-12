@@ -27,6 +27,9 @@ Templates para AppBlog:
 ![image](https://user-images.githubusercontent.com/3296918/195202101-c45e28ab-8584-44ec-b6f6-3478c5586bb2.png)
 
 Juan Pablo Fittipaldi:
+
+Implementacion de AppChat y AppModuloUsuario:
+
 Creacion de Proyecto, AppChat y AppModuloUsuario
 
 Modelos de AppChat y AppModuloUsuario
